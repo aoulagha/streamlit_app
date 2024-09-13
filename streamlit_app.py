@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title("** Dashboard des Accidents de Voiture ** by Amine")
+st.title("Dashboard des Accidents de Voiture")
+
 
 np.random.seed(0)
 dates = pd.date_range('2015-01-01', periods=2000, freq='D')
@@ -42,6 +43,11 @@ st.write(filtered_df)
 st.write(f"**Nombre total d'accidents pour l'année {selected_year}**: {filtre_df['Accidents'].sum()}")
 st.write(f"**Moyenne d'accidents par jour**: {filtre_df['Accidents'].mean():.2f}")
 
+st.write("Nombre accidents par année :")
+accidents_per_month = filtre_df.groupby('Month')['Accidents'].sum()
+st.bar_chart(accidents_per_month)
+
+
 st.sidebar.download_button(
     label="Télécharger les données",
     data=filtered_df.to_csv(),
@@ -58,6 +64,3 @@ sentiment_mapping = ["one", "two", "three", "four", "five"]
 selected = st.feedback("stars")
 if selected is not None:
     st.markdown(f"You selected {sentiment_mapping[selected]} star(s).")
-
-
-
