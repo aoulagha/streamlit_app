@@ -9,5 +9,5 @@ tab1, tab2, tab3, tab4 = st.tabs(["Présentation de l'écosystème", "La SciPy S
 with tab1:
     tab11, = st.tabs(["Guide"])
 
-    with tab4:
+    with tab11:
         st.title("Guide de Gestion des Environnements Python avec venv")
